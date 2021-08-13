@@ -45,18 +45,6 @@ jobs:
       - name: Install extra dependencies
         run: julia --project -e 'using Books; Books.install_dependencies()'
 
-      - name: Instantiate BooksDocs
-        run: julia --project=docs/ -e '
-          using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-
-      - name: Build docs
-        run: |
-          cd docs
-          julia --project -e 'using BooksDocs; M = BooksDocs; BooksDocs.build()'
-        env:
-          GKS_ENCODING: "utf8"
-          GKSwstype: "100"
-
       - name: Deploy to secondary branch
         # Always updates documentation when ubuntu passes, which is fine.
         if: ${{ ( github.event_name == 'push' || github.event_name == 'workflow_dispatch') && runner.os == 'Linux' }}
