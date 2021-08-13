@@ -8,6 +8,9 @@
     "references"
   ]
 
+  # Prefix for GitHub Pages.
+  online_url_prefix = "/ResearchBook"
+
   # Port used by serve().
   port = 8000
 
