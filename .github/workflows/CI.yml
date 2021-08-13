@@ -8,8 +8,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  test-and-deploy:
+    name: Test and deploy
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - "1"
+        os:
+          - ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,7 +26,7 @@ jobs:
 
       - uses: julia-actions/setup-julia@v1
         with:
-          version: "1"
+          version: ${{ matrix.version }}
 
       - uses: actions/cache@v1
         env:
@@ -30,19 +39,31 @@ jobs:
             ${{ runner.os }}-test-
             ${{ runner.os }}-
 
-      # Enforce most recent version.
-      - name: Install Books.jl
-        run: julia --project -e 'using Pkg;
-          Pkg.add("Books.jl");'
+      - name: Install Julia dependencies
+        uses: julia-actions/julia-buildpkg@latest
 
-      - name: Install dependencies
-        run: julia --project -e 'using Pkg; Pkg.instantiate();
-                using Books; Books.install_dependencies()'
+      - name: Install extra dependencies
+        run: julia --project -e 'using Books; Books.install_dependencies()'
+
+      - uses: julia-actions/julia-runtest@v1
+
+      - name: Instantiate BooksDocs
+        run: julia --project=docs/ -e '
+          using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
+
+      - name: Build docs
+        run: |
+          cd docs
+          julia --project -e 'using BooksDocs; M = BooksDocs; BooksDocs.build()'
+        env:
+          GKS_ENCODING: "utf8"
+          GKSwstype: "100"
 
       - name: Deploy to secondary branch
-        if: ${{ github.event_name != 'pull_request' }}
+        # Always updates documentation when ubuntu passes, which is fine.
+        if: ${{ ( github.event_name == 'push' || github.event_name == 'workflow_dispatch') && runner.os == 'Linux' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           force_orphan: true
           publish_dir: ./_build/
