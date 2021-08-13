@@ -45,6 +45,9 @@ jobs:
       - name: Install extra dependencies
         run: julia --project -e 'using Books; Books.install_dependencies()'
 
+      - name: Build the book
+        run: julia --project -e 'using ResearchBook; ResearchBook.build()'
+
       - name: Deploy to secondary branch
         # Always updates documentation when ubuntu passes, which is fine.
         if: ${{ ( github.event_name == 'push' || github.event_name == 'workflow_dispatch') && runner.os == 'Linux' }}
