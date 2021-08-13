@@ -1,0 +1,49 @@
+---
+title: A Researcher's Guide to Managing Knowledge
+subtitle: A gentle introduction into managing your research
+author: Jacob S. Zelko
+
+# This affects things as whether to include a white page before each chapter in the PDF.
+# See the `.tex` template for more information.
+# For reports, set `book: false`.
+book: true
+
+# Licenses; can be empty.
+html-license: All Rights Reserved. Copyright ©2021 
+tex-license: All Rights Reserved. Copyright ©2021 
+
+pdf-footer: All Rights Reserved. Copyright ©2021 
+
+# Make margins a bit smaller. LaTeX has huge default margins.
+geometry:
+  - top=20mm
+  - left=24mm
+  - right=24mm
+  - bottom=28mm
+
+# A setting for the PDF. I don't know whether it is important.
+lang: en-US
+
+tags: [pandoc, Books.jl, JuliaLang]
+number-sections: true
+
+code-block-font-size: \scriptsize
+
+titlepage: true
+linkReferences: true
+bibliography: /home/src/Knowledgebase/Zettelkasten/zettel.bib 
+link-citations: true
+
+# These table of contents settings only affect the PDF.
+toc: true
+toc-depth: 2
+
+# Cross-reference prefixes.
+eqnPrefix: Equation
+figPrefix: Figure
+tblPrefix: Table
+secPrefix: Section
+
+# Keyboard shortcuts.
+mousetrap: true
+---

@@ -1,0 +1,15 @@
+[projects]
+
+  [projects.default]
+
+  contents = [
+    "introduction",
+    "personal_learning_system",
+    "references"
+  ]
+
+  # Port used by serve().
+  port = 8000
+
+  # Syntax highlighting.
+  highlight = true
