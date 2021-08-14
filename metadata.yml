@@ -24,15 +24,14 @@ geometry:
 # A setting for the PDF. I don't know whether it is important.
 lang: en-US
 
-tags: [pandoc, Books.jl, JuliaLang]
+tags: [research, book]
 number-sections: true
 
 code-block-font-size: \scriptsize
 
 titlepage: true
 linkReferences: true
-# This is not gonna work in CI.
-# bibliography: /home/src/Knowledgebase/Zettelkasten/zettel.bib
+bibliography: ./contents/bibliography.bib
 link-citations: true
 
 # These table of contents settings only affect the PDF.
