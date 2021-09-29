@@ -1,6 +1,22 @@
-# Personal Learning
+# Personal Learning 📚
 
-## Screening Heuristics [DONE]
+This chapter concerns what I have come across in my educational practices as being of extreme use to me as a researcher and student.
+The information provided here encapsulates a variety of information and techniques one can make use of in their studies or research.
+Here are the executive summaries of each section:
+
+**-@sec:screening-heuristics Screening Heuristics** - these are some of my own heuristics I use when scanning media.
+I encourage you to let these inspire you in creating your own heuristics!
+
+**-@sec:spacing-effect The Spacing Effect** - the spacing effect is a useful way to schedule your learning for maximum retention and understanding of material.
+
+**-@sec:spaced-repetition-systems Spaced Repetition Systems** - modern tools and suggestions on how to incorporate the spacing effect into your learning.
+
+**-@sec:incremental-reading Incremental Reading** - a paradigm to read multiple pieces of information at once to maximize reading while learning.
+
+These sections expose you to many ideas that can help with you developing your own learning process.
+Later chapters go more into how to connect all of this together in a more practical manner.
+
+## Screening Heuristics {#sec:screening-heuristics}
 
 When faced with a piece of media to consume, I apply the following heuristics to determine if it is worth my time:
 
@@ -12,7 +28,7 @@ To qualify these heuristics, an explanation. I operate under the implicit assump
 
 Furthermore, I am a selfish in my consumption of media. I choose to consume that which I wish to consume. While processing a piece of media, I may skip around in it until I find something interesting.
 
-## [The Spacing Effect](05282020163507-spacing-effect.md) & [Spaced Repetition Systems](05252020183020-spaced-repetition-systems.md) [DONE]
+## The Spacing Effect {#sec:spacing-effect}
 
 The spacing effect accounts for the fact that learning is improved when studying is spread out over time. It was first discovered and described by Hermann Ebbinghaus during 1880 - 1885. [@ebbinghaus1885ueber] His findings were later accurately reproduced and documented by *Murre & Dros*. [@murreReplicationAnalysisEbbinghaus2015] [(Click for results of that study here)](05282020172154-replication-ebbinghaus.md)
 
@@ -24,7 +40,9 @@ A confounding factor in the idea of the spacing effect is the encoding variabili
 
 However, there are concerns about the spacing effect that have impeded its overall adoption into educational formats. *Dempster* made a case examining potential rationales for the lack of adoption in a review of the current state of the spacing effect (though the study is old over 30 years old, it still remains that education systems do not incorporate the spacing effect). [@dempsterCaseStudyFailure1988] His biggest point of concern was the lack of studies that showed effective classroom utilization of the method.
 
-Despite such misgivings, it is still a phenomenon that have given rise to many benefits and potential applications for at least personal education. Principle of which is in the form of[spaced repetition systems.](05252020183020-spaced-repetition-systems.md) These systems have determined the best spacing algorithms for a learner to use the spacing effect to assist in learning diverse educational material.
+## Spaced Repetition Systems {#sec:spaced-repetition-systems}
+
+Despite such misgivings, it is still a phenomenon that have given rise to many benefits and potential applications for at least personal education. Principle of which is in the form of [spaced repetition systems.](05252020183020-spaced-repetition-systems.md) These systems have determined the best spacing algorithms for a learner to use the spacing effect to assist in learning diverse educational material.
 
 There are multiple algorithms available used for effectively implementing the spacing effect. The earliest algorithm comes from the original discoverer of the spacing effect, Hermann Ebbinghaus. The algorithm [has been replicated](05282020172154-replication-ebbinghaus.md) and scrutinized examined multiple times. [@murreReplicationAnalysisEbbinghaus2015; @ebbinghaus1885ueber; @bjork2011making] Spaced repetition systems are based around proper implementations of such algorithms.
 
@@ -38,7 +56,7 @@ Whether analog or digital, key features of these systems are as follows:
 2. Each piece of information is spaced automatically per a user's perceived difficulty in either remembering or processing that piece of information on a repetition.
 3. Pieces of information are generally presented in a "flashcard" format and are stored in "decks". 
 
-## [Incremental Reading](05092020053727-incremental-reading.md) [DONE]
+## Incremental Reading {#sec:incremental-reading}
 
 Piotr Woźniak, a Polish learning researcher, is thought to be the originator of the term and process of "incremental reading". Incremental reading is a methodology that enables one to process multiple written pieces concurrently over several days while promoting learning. The methodology follows this general format:
 
