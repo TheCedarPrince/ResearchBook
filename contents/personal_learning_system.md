@@ -1,4 +1,4 @@
-# Personal Learning 📚
+# Knowledge Building 📚
 
 This chapter concerns what I have come across in my educational practices as being of extreme use to me as a researcher and student.
 The information provided here encapsulates a variety of information and techniques one can make use of in their studies or research.
@@ -21,7 +21,9 @@ Later chapters go more into how to connect all of this together in a more practi
 When faced with a piece of media to consume, I apply the following heuristics to determine if it is worth my time:
 
 1. **Do I want to consume this?** Often, I open media after reading the title and sub-heading. If it sounds interesting, I might process it, if not: pass. 
+
 2. **Am I motivated to process this?** If I am not motivated to process a piece of media, I either throw it out or save it for processing later. If I keep it and have not processed it after some arbitrary time, I don't bother processing it and throw it out.
+
 3. **Do I find the main thesis of the piece intriguing?** I will jump from the beginning to the end of a piece. If the thesis seems intriguing to me I will investigate the conclusion. If the ending convincingly ties itself back to the thesis, I deem it worth my time. If it fails any of these moments, I throw it out.
 
 To qualify these heuristics, an explanation. I operate under the implicit assumption that time is scarce. Every thing wants your time. Therefore, it is imperative to triage valuable information from noise. I rationalize that the cost of missing something in my screening process is low. If a piece is worth my time, I will be led back to it. 
@@ -40,9 +42,14 @@ A confounding factor in the idea of the spacing effect is the encoding variabili
 
 However, there are concerns about the spacing effect that have impeded its overall adoption into educational formats. *Dempster* made a case examining potential rationales for the lack of adoption in a review of the current state of the spacing effect (though the study is old over 30 years old, it still remains that education systems do not incorporate the spacing effect). [@dempsterCaseStudyFailure1988] His biggest point of concern was the lack of studies that showed effective classroom utilization of the method.
 
+[^1]: Testing
+[^2]: Testing
+
 ## Spaced Repetition Systems {#sec:spaced-repetition-systems}
 
-Despite such misgivings, it is still a phenomenon that have given rise to many benefits and potential applications for at least personal education. Principle of which is in the form of [spaced repetition systems.](05252020183020-spaced-repetition-systems.md) These systems have determined the best spacing algorithms for a learner to use the spacing effect to assist in learning diverse educational material.
+Despite such misgivings, it is still a phenomenon that have given rise to many benefits and potential applications for at least personal education. 
+Principle of which is in the form of [spaced repetition systems.](05252020183020-spaced-repetition-systems.md) 
+These systems have determined the best spacing algorithms for a learner to use the spacing effect to assist in learning diverse educational material.
 
 There are multiple algorithms available used for effectively implementing the spacing effect. The earliest algorithm comes from the original discoverer of the spacing effect, Hermann Ebbinghaus. The algorithm [has been replicated](05282020172154-replication-ebbinghaus.md) and scrutinized examined multiple times. [@murreReplicationAnalysisEbbinghaus2015; @ebbinghaus1885ueber; @bjork2011making] Spaced repetition systems are based around proper implementations of such algorithms.
 
@@ -70,3 +77,6 @@ Piotr Woźniak, a Polish learning researcher, is thought to be the originator of
 
 Incremental reading aids attention and encourages better retention via intermittent breaks and mixing of reading materials, respectively. [^2] [@bjork2011making; @shea1979contextual; @arigaBriefRareMental2011] Ingesting raw annotations into a spaced repetition system makes processing them manageable as the cards they are written appear at spaced intervals. On each appearance of a card, one can rewrite or modify that card; further cementing it in memory. [^3] [@bjork2011making] After finishing revisions and reviews, this general process is repeated until done with reading the pieces.
 
+[^1]: Testing
+[^2]: Testing
+[^3]: Testing
