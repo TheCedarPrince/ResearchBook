@@ -1,10 +1,10 @@
-# Grants 🖋️
+# Funding Your Ideas 💰
 
 Grants.
 For some, the word brings excitement.
 Others: terror.
 
-## Before You Look for Grants
+## Before Your Funding Search
 
-Foo
+## 
 
