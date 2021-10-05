@@ -1,4 +1,4 @@
-# Intro: Why This Book? 📖
+# Why This Book? 📖
 
 I did not intend to write this book.
 Yet, here I am, straddling a log above a brook log listening to the soothing symphony of the running water juxtaposed against the harsh whir of cars on the main roadway not more than a rocks throw from where I precariously sit.
