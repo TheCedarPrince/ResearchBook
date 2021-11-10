@@ -1,0 +1,639 @@
+\documentclass[
+  notoc % Suppress Tufte style table of contents.
+]{tufte-book}
+
+% Required Tufte packages.
+\usepackage{changepage} % or changepage
+\usepackage{fancyhdr}
+\usepackage{fontenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{bibentry}
+\usepackage{optparams}
+\usepackage{paralist}
+\usepackage{placeins}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{textcase}
+\usepackage{textcomp}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{xcolor}
+\usepackage{xifthen}
+
+\geometry{top=20mm,left=24mm,right=24mm,bottom=28mm}
+
+% Tufte vs. Pandoc workaround.
+% Issue: https://github.com/Tufte-LaTeX/tufte-latex/issues/64.
+\renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+\renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+
+% \setmainfont{TeX Gyre Pagella}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\setmainfont{texgyrepagella}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic,
+]
+
+\newfontfamily\JuliaMono{JuliaMono}[
+  UprightFont = *-Regular,
+  BoldFont = *-Bold
+]
+\newfontface\JuliaMonoRegular{JuliaMono-Regular}
+\newfontface\JuliaMonoBold{JuliaMono-Bold}
+
+\setmonofont{JuliaMono-Medium}[
+  Contextuals=Alternate,
+  Ligatures=NoCommon
+]
+
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+
+\usepackage{float}
+\floatplacement{figure}{H}
+
+% Listings Julia syntax definition.
+\input{/home/runner/.julia/packages/Books/oARrL/defaults/julia_listings.tex}
+
+% Unicode support.
+\input{/home/runner/.julia/packages/Books/oARrL/defaults/julia_listings_unicode.tex}
+
+% Used by Pandoc.
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+}
+\newcommand{\passthrough}[1]{#1}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+% Source: Wandmalfarbe/pandoc-latex-template.
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\definecolor{linkblue}{HTML}{117af2}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=linkblue,
+  linkcolor=linkblue,
+  urlcolor=linkblue,
+  linktoc=page, % Avoid Table of Contents being nearly completely blue.
+  pdftitle={A Researcher's Guide to Managing Knowledge},
+  pdfauthor={Jacob S. Zelko},
+  pdflang={en-US},
+  breaklinks=true,
+  pdfcreator={LaTeX via Pandoc}%
+}
+\urlstyle{same} % disable monospaced font for URLs
+
+\title{A Researcher's Guide to Managing Knowledge}
+\author{\noindent{Jacob S. Zelko}\\[3mm] }
+\date{}
+
+% Re-enable section numbering which was disabled by tufte.
+\setcounter{secnumdepth}{2}
+
+% Fix captions for longtable.
+% Thanks to David Carlisle at https://tex.stackexchange.com/a/183344/92217.
+\makeatletter
+\def\LT@makecaption#1#2#3{%
+  \noalign{\smash{\hbox{\kern\textwidth\rlap{\kern\marginparsep
+  \parbox[t]{\marginparwidth}{\vspace{12pt}%
+\@tufte@caption@font \@tufte@caption@justification \noindent
+   #1{#2: }\ignorespaces #3}}}}}}
+\makeatother
+
+% Doesn't seem to do anything.
+\usepackage{float}
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+% Reduce large spacing around sections.
+\titlespacing*{\chapter}{0pt}{5pt}{20pt}
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1.75ex plus 1ex minus .2ex}{1.0ex plus.2ex}
+
+\titleformat{\chapter}%
+  [hang]% shape
+  {\normalfont\huge\itshape}% format applied to label+text
+  {\huge\thechapter}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
+% Reduce spacing in table of contents.
+\usepackage{etoolbox}
+\makeatletter
+\pretocmd{\chapter}{\addtocontents{toc}{\protect\addvspace{-3\p@}}}{}{}
+\pretocmd{\section}{\addtocontents{toc}{\protect\addvspace{-4\p@}}}{}{}
+\pretocmd{\subsection}{\addtocontents{toc}{\protect\addvspace{-5\p@}}}{}{}
+\makeatother
+
+% Long texts are harder to read than tables.
+% Therefore, we can reduce the font size of the table.
+\AtBeginEnvironment{longtable}{\footnotesize}
+
+% Some space between paragraphs is necessary because code blocks can output single line paragraphs.
+\setlength\parskip{1em plus 0.1em minus 0.2em}
+
+% For justified text.
+\usepackage{ragged2e}
+
+% tufte-book disables subsubsections by default.
+% Got this definition back via `\show\subsubsection`.
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+
+% URL line breaks.
+\usepackage{xurl}
+
+% Probably doesn't hurt.
+\usepackage{marginfix}
+
+
+\begin{document}
+
+\makeatletter
+\thispagestyle{empty}
+\vfill
+{\Huge\bf
+\noindent
+\@title
+}\\[1in]
+{\Large
+\noindent
+\@author
+}
+\makeatother
+
+\makeatletter
+\newpage
+\thispagestyle{empty}
+\vfill
+{\noindent
+
+}
+\vfill
+{\small
+
+
+2021-11-10
+
+All Rights Reserved. Copyright ©2021
+}
+\makeatother
+
+
+% Don't remove this or authors will show up in header of every page.
+\frontmatter
+\mainmatter
+\fancyfoot[C]{All Rights Reserved. Copyright ©2021}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+% Justify text.
+\justifying
+
+% parindent seems to be set from within another class too.
+% it is really not useful here because it will also indent lines directly after
+% code blocks. Which most of the times not useful.
+\setlength{\parindent}{0pt}
+
+\hypertarget{why-this-book}{%
+\chapter{Why This Book? 📖}\label{why-this-book}}
+
+I did not intend to write this book. Yet, here I am, straddling a log
+above a brook log listening to the soothing symphony of the running
+water juxtaposed against the harsh whir of cars on the main roadway not
+more than a rocks throw from where I precariously sit. And I suppose,
+that this description is a very apt analogy for how I found myself
+writing this book.
+
+Away from the wooded groves and busy streets, for a majority of my life
+I have found myself not enjoying the vivacious odor of leaves and pines,
+but musty books and freshly steeped tea. As both a professional student
+and at-times independent, at-times employed researcher, I have observed
+an interesting phenomena that can best be characterized as
+``intellectual waste.'' What I mean by this is that I have the great
+fortune and privilege of being frequently surrounded by brilliant
+people. Medical doctors, lawyers, company founders - I often interact
+and even share the occasional coffee or cocoa with stunning minds such
+as these. Although brilliant, a common observation I have made amongst
+these professionals from my perch on my proverbial ``log'' is the lack
+of intellectual organization.
+
+I vividly remember one conversation with a colleague of mine - a
+prolific mathematician turned bioninformatician - on the matter of note
+taking during literature reviews. As a rather novice, though not
+inexperienced, researcher at the time, I held great respect for this
+colleague's thoughts and was eager to hear how he conducted his work.
+The colleague opened a directory on his personal computer and showed me
+a plethora of different sub-directories, each containing notes and
+thoughts on particular papers. It was no shock that it contained so many
+notes, but I couldn't help but wonder: ``How could they find anything
+when they needed it?'' When I asked about how easy it was to find a
+particular fact or piece information from this system, the answer was
+given with a sheepish grin: ``Not very.'' That question was the catalyst
+which spurred me to take the question of how to reduce intellectual
+waste very seriously - especially as I began my own journey as a
+researcher.
+
+Before you read another word, let me lay out exactly what this book will
+discuss - and more importantly, what it \emph{won't}.
+
+\hypertarget{who-is-this-book-for}{%
+\section{Who Is This Book For?}\label{who-is-this-book-for}}
+
+Foo Bar
+
+\hypertarget{who-is-this-book-not-for}{%
+\section{Who Is This Book Not For?}\label{who-is-this-book-not-for}}
+
+Foo Baz
+
+\hypertarget{knowledge-building}{%
+\chapter{Knowledge Building 📚}\label{knowledge-building}}
+
+This chapter concerns what I have come across in my educational
+practices as being of extreme use to me as a researcher and student. The
+information provided here encapsulates a variety of information and
+techniques one can make use of in their studies or research. Here are
+the executive summaries of each section:
+
+\textbf{\ref{sec:screening-heuristics} Screening Heuristics} - these are
+some of my own heuristics I use when scanning media. I encourage you to
+let these inspire you in creating your own heuristics!
+
+\textbf{\ref{sec:spacing-effect} The Spacing Effect} - the spacing
+effect is a useful way to schedule your learning for maximum retention
+and understanding of material.
+
+\textbf{\ref{sec:spaced-repetition-systems} Spaced Repetition Systems} -
+modern tools and suggestions on how to incorporate the spacing effect
+into your learning.
+
+\textbf{\ref{sec:incremental-reading} Incremental Reading} - a paradigm
+to read multiple pieces of information at once to maximize reading while
+learning.
+
+These sections expose you to many ideas that can help with you
+developing your own learning process. Later chapters go more into how to
+connect all of this together in a more practical manner.
+
+\hypertarget{sec:screening-heuristics}{%
+\section{Screening Heuristics}\label{sec:screening-heuristics}}
+
+When faced with a piece of media to consume, I apply the following
+heuristics to determine if it is worth my time:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Do I want to consume this?} Often, I open media after reading
+  the title and sub-heading. If it sounds interesting, I might process
+  it, if not: pass.
+\item
+  \textbf{Am I motivated to process this?} If I am not motivated to
+  process a piece of media, I either throw it out or save it for
+  processing later. If I keep it and have not processed it after some
+  arbitrary time, I don't bother processing it and throw it out.
+\item
+  \textbf{Do I find the main thesis of the piece intriguing?} I will
+  jump from the beginning to the end of a piece. If the thesis seems
+  intriguing to me I will investigate the conclusion. If the ending
+  convincingly ties itself back to the thesis, I deem it worth my time.
+  If it fails any of these moments, I throw it out.
+\end{enumerate}
+
+To qualify these heuristics, an explanation. I operate under the
+implicit assumption that time is scarce. Every thing wants your time.
+Therefore, it is imperative to triage valuable information from noise. I
+rationalize that the cost of missing something in my screening process
+is low. If a piece is worth my time, I will be led back to it.
+
+Furthermore, I am a selfish in my consumption of media. I choose to
+consume that which I wish to consume. While processing a piece of media,
+I may skip around in it until I find something interesting.
+
+\hypertarget{sec:spacing-effect}{%
+\section{The Spacing Effect}\label{sec:spacing-effect}}
+
+The spacing effect accounts for the fact that learning is improved when
+studying is spread out over time. It was first discovered and described
+by Hermann Ebbinghaus during 1880 - 1885.
+(\protect\hyperlink{ref-ebbinghaus1885ueber}{Ebbinghaus, 1885}) His
+findings were later accurately reproduced and documented by \emph{Murre
+\& Dros}.
+(\protect\hyperlink{ref-murreReplicationAnalysisEbbinghaus2015}{Murre \&
+Dros, 2015}) \href{05282020172154-replication-ebbinghaus.md}{(Click for
+results of that study here)}
+
+The spacing effect has not been very well utilized in US-based education
+institutes despite its multitudinous benefits.
+(\protect\hyperlink{ref-dempsterCaseStudyFailure1988}{Dempster, 1988})
+Cepeda et al.~determined that in a memory based challenge, spaced based
+learning outperformed massed learning \textasciitilde96\% of the time.
+(\protect\hyperlink{ref-cepeda2006distributed}{Cepeda et al., 2006})
+This coincides with the deficient processing view posited by Hintzman
+that stated how massed repetition leads to a lack of attention in later
+reviews. (\protect\hyperlink{ref-hintzman1974theoretical}{Hintzman,
+1974})
+
+According to \emph{Pyc and Rawson}, labored but correct recall while
+practicing improves memory. Spacing items of recall produce greater
+effort during retrieval and enables thorough conversion of the item to
+memory.\footnote{Testing} (\protect\hyperlink{ref-pyc2009testing}{Pyc \&
+Rawson, 2009}) Semantic processing of information during repetitions
+assists in making that information more
+\href{03172020033742-antifragility.md}{anti-fragile, to borrow from
+Nassim Taleb,} during reviews. This causes performance in later memory
+testing to be unaffected by changes in such things like the type of font
+used when presented information.\footnote{Testing}
+(\protect\hyperlink{ref-mammarella2002spacing}{Mammarella et al., 2002})
+
+A confounding factor in the idea of the spacing effect is the encoding
+variability theory. This theory states that one's performance on a
+memory test is related to overlaps amongst current contextualized
+material both during testing and while encoding. According to this view,
+spaced repetition typically entails some variability in presentation
+contexts. Yet, this results in a positive outcome being that there are
+then more retrieval cues associated with that material.
+(\protect\hyperlink{ref-cormier2014basic}{Cormier, 2014})
+
+However, there are concerns about the spacing effect that have impeded
+its overall adoption into educational formats. \emph{Dempster} made a
+case examining potential rationales for the lack of adoption in a review
+of the current state of the spacing effect (though the study is old over
+30 years old, it still remains that education systems do not incorporate
+the spacing effect).
+(\protect\hyperlink{ref-dempsterCaseStudyFailure1988}{Dempster, 1988})
+His biggest point of concern was the lack of studies that showed
+effective classroom utilization of the method.
+
+\hypertarget{sec:spaced-repetition-systems}{%
+\section{Spaced Repetition
+Systems}\label{sec:spaced-repetition-systems}}
+
+Despite such misgivings, it is still a phenomenon that have given rise
+to many benefits and potential applications for at least personal
+education. Principle of which is in the form of
+\href{05252020183020-spaced-repetition-systems.md}{spaced repetition
+systems.} These systems have determined the best spacing algorithms for
+a learner to use the spacing effect to assist in learning diverse
+educational material.
+
+There are multiple algorithms available used for effectively
+implementing the spacing effect. The earliest algorithm comes from the
+original discoverer of the spacing effect, Hermann Ebbinghaus. The
+algorithm \href{05282020172154-replication-ebbinghaus.md}{has been
+replicated} and scrutinized examined multiple times.
+(\protect\hyperlink{ref-bjork2011making}{Bjork et al., 2011};
+\protect\hyperlink{ref-ebbinghaus1885ueber}{Ebbinghaus, 1885};
+\protect\hyperlink{ref-murreReplicationAnalysisEbbinghaus2015}{Murre \&
+Dros, 2015}) Spaced repetition systems are based around proper
+implementations of such algorithms.
+
+Before the advent of computers, it was very difficult to implement such
+a system. The best system to take advantage of this effect was the
+\href{05102020220941-leitner-system.md}{Leitner System which used paper
+note cards} to assist with remembering information.
+(\protect\hyperlink{ref-sebastianleitnerLerntManLernen1972}{Sebastian
+Leitner, 1972}) However, this was still a somewhat fragile system and
+difficult to manage.
+
+With computers, there have been several pieces of software made to
+automate and keep track of repetitions \emph{for a learner}. A majority
+of these systems directly adapted the Leitner System from the analog to
+the digital world. Each software generally has proprietary algorithms
+that supposedly maximize the spacing effect but are directly inspired by
+the original work done by Ebbinghaus.
+
+Whether analog or digital, key features of these systems are as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Uses an algorithm implementation of the spacing effect for a user.
+\item
+  Each piece of information is spaced automatically per a user's
+  perceived difficulty in either remembering or processing that piece of
+  information on a repetition.
+\item
+  Pieces of information are generally presented in a ``flashcard''
+  format and are stored in ``decks.''
+\end{enumerate}
+
+\hypertarget{sec:incremental-reading}{%
+\section{Incremental Reading}\label{sec:incremental-reading}}
+
+Piotr Woźniak, a Polish learning researcher, is thought to be the
+originator of the term and process of ``incremental reading.''
+Incremental reading is a methodology that enables one to process
+multiple written pieces concurrently over several days while promoting
+learning. The methodology follows this general format:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Identify written pieces of interest.
+\item
+  Prioritize the pieces according to personal urgency. Adjust while
+  reading.
+\item
+  Allocate a comfortable reading time duration per piece with a timed,
+  short break in-between.\footnote{Testing}
+\item
+  While reading each piece, annotate material that is of interest or
+  difficult to process.
+\item
+  Transfer annotations from each piece to an index card representation
+  (actual or digital).
+\item
+  Pause reading and review collected annotations using a spaced
+  repetition system.
+\item
+  Once annotations have been thoroughly revised and reviewed, repeat
+  from step 2 until finished with pieces over the next several days.
+\end{enumerate}
+
+Incremental reading aids attention and encourages better retention via
+intermittent breaks and mixing of reading materials,
+respectively.\footnote{Testing}
+(\protect\hyperlink{ref-arigaBriefRareMental2011}{Ariga \& Lleras,
+2011}; \protect\hyperlink{ref-bjork2011making}{Bjork et al., 2011};
+\protect\hyperlink{ref-shea1979contextual}{Shea \& Morgan, 1979})
+Ingesting raw annotations into a spaced repetition system makes
+processing them manageable as the cards they are written appear at
+spaced intervals. On each appearance of a card, one can rewrite or
+modify that card; further cementing it in memory.\footnote{Testing}
+(\protect\hyperlink{ref-bjork2011making}{Bjork et al., 2011}) After
+finishing revisions and reviews, this general process is repeated until
+done with reading the pieces.
+
+\hypertarget{researching-courageously}{%
+\chapter{Researching Courageously ⚔️}\label{researching-courageously}}
+
+\begin{quote}
+Once you get your courage up and believe that you can do important
+problems, then you can. - Richard Hamming, ``You and Your Research''
+\end{quote}
+
+\hypertarget{what-is-great}{%
+\section{What Is ``Great?''}\label{what-is-great}}
+
+Based off the talk by Richard Hamming, \emph{``You and Your Research''}.
+
+\hypertarget{asking-great-questions}{%
+\section{Asking Great Questions}\label{asking-great-questions}}
+
+The art of making great research.
+
+\hypertarget{great-ideas}{%
+\section{Great Ideas}\label{great-ideas}}
+
+\hypertarget{creating-research-directions}{%
+\section{Creating Research
+Directions}\label{creating-research-directions}}
+
+The distinguishing feature between research directions and research
+ideas is a matter of pinning. Generally, up until now, the ideation is
+fantastic. It is playful, it is creative, and it is unfettered by any
+barrier.
+
+A research direction however, requires one to define what it is they
+want to pursue. An idea is only an idea, until it is succinctly
+communicated. That communication, too early, can be a negative barrier
+to creativity as one may not have had enough time to play with the
+thoughts. It is a balancing act of determining at what phase an idea is
+ready to be communicated.
+
+My personal rule of thumb for this is as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Have an idea and explore it thoroughly through whatever means
+  suitable.
+\item
+  Work towards having a mental sketch of what this idea could lead to.
+\item
+  When you start feeling like you want to share the idea with someone,
+  share it.
+\end{enumerate}
+
+\hypertarget{funding-your-ideas}{%
+\chapter{Funding Your Ideas 💰}\label{funding-your-ideas}}
+
+Grants. For some, the word brings excitement. Others: terror.
+
+\hypertarget{before-your-funding-search}{%
+\section{Before Your Funding Search}\label{before-your-funding-search}}
+
+\hypertarget{section}{%
+\section{}\label{section}}
+
+\hypertarget{appendix}{%
+\chapter*{Appendix}\label{appendix}}
+\addcontentsline{toc}{chapter}{Appendix}
+
+Foo bar
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\hypertarget{ref-arigaBriefRareMental2011}{}%
+Ariga, A., \& Lleras, A. (2011). Brief and rare mental {``breaks''} keep
+you focused: {Deactivation} and reactivation of task goals preempt
+vigilance decrements. \emph{Cognition}, \emph{118}(3), 439--443.
+\url{https://doi.org/10.1016/j.cognition.2010.12.007}
+
+\leavevmode\hypertarget{ref-bjork2011making}{}%
+Bjork, E. L., Bjork, R. A., \& others. (2011). Making things hard on
+yourself, but in a good way: {Creating} desirable difficulties to
+enhance learning. \emph{Psychol. Real World Essays Illus. Fundam.
+Contrib. Soc.}, \emph{2}(59-68).
+
+\leavevmode\hypertarget{ref-cepeda2006distributed}{}%
+Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., \& Rohrer, D.
+(2006). Distributed practice in verbal recall tasks: {A} review and
+quantitative synthesis. \emph{Psychol. Bull.}, \emph{132}(3), 354.
+
+\leavevmode\hypertarget{ref-cormier2014basic}{}%
+Cormier, S. M. (2014). \emph{Basic processes of learning, cognition, and
+motivation}. {Psychology Press}.
+
+\leavevmode\hypertarget{ref-dempsterCaseStudyFailure1988}{}%
+Dempster, F. N. (1988). A {Case Study} in the {Failure} to {Apply} the
+{Results} of {Psychological Research}. \emph{Am. Psychol.}, 8.
+
+\leavevmode\hypertarget{ref-ebbinghaus1885ueber}{}%
+Ebbinghaus, H. (1885). \emph{Ueber das gedächtnis}.
+
+\leavevmode\hypertarget{ref-hintzman1974theoretical}{}%
+Hintzman, D. L. (1974). \emph{Theoretical implications of the spacing
+effect.}
+
+\leavevmode\hypertarget{ref-mammarella2002spacing}{}%
+Mammarella, N., Russo, R., \& Avons, S. (2002). Spacing effects in
+cued-memory tasks for unfamiliar faces and nonwords. \emph{Mem.
+Cognit.}, \emph{30}(8), 1238--1251.
+
+\leavevmode\hypertarget{ref-murreReplicationAnalysisEbbinghaus2015}{}%
+Murre, J. M. J., \& Dros, J. (2015). Replication and {Analysis} of
+{Ebbinghaus}' {Forgetting Curve}. \emph{PLoS ONE}, \emph{10}(7),
+e0120644. \url{https://doi.org/10.1371/journal.pone.0120644}
+
+\leavevmode\hypertarget{ref-pyc2009testing}{}%
+Pyc, M. A., \& Rawson, K. A. (2009). Testing the retrieval effort
+hypothesis: {Does} greater difficulty correctly recalling information
+lead to higher levels of memory? \emph{J. Mem. Lang.}, \emph{60}(4),
+437--447.
+
+\leavevmode\hypertarget{ref-sebastianleitnerLerntManLernen1972}{}%
+Sebastian Leitner. (1972). \emph{So lernt man lernen: {Aangewandte
+Lernpsychologie} - ein {Weg} zum {Erfolg}}. {Verlag Herder}.
+
+\leavevmode\hypertarget{ref-shea1979contextual}{}%
+Shea, J. B., \& Morgan, R. L. (1979). Contextual interference effects on
+the acquisition, retention, and transfer of a motor skill. \emph{J. Exp.
+Psychol. {[}Hum. Learn.{]}}, \emph{5}(2), 179.
+
+\end{CSLReferences}
+
+\backmatter
+
+\end{document}
